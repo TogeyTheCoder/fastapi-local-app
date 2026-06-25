@@ -5,6 +5,7 @@ import uvicorn
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Access app in http://127.0.0.1:8000
 # Root is still http://0.0.0.0:8000
