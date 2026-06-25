@@ -6,6 +6,8 @@ from pathlib import Path
 from uuid import uuid4
 import sqlite3
 
+from .tables import *
+
 class Store(BaseModel):
     location: str
     store_name: str
@@ -18,16 +20,6 @@ BASE_DIR = Path(__file__).parent
 connection = sqlite3.connect(BASE_DIR / "database" / "stores.db")
 
 cursor = connection.cursor()
-
-table1 = """
-CREATE TABLE IF NOT EXISTS
-stores(
-    store_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    store_name TEXT UNIQUE,
-    location TEXT, 
-    unique_id TEXT UNIQUE
-)
-"""
 
 cursor.execute(table1)
 
@@ -43,14 +35,7 @@ async def root(request: Request):
 @app.post("/stores/")
 async def execute_tables(store: Store):
 
-    cursor.execute(
-        """
-        INSERT INTO stores
-        (store_name, location, unique_id)
-        VALUES (?, ?, ?)
-        """,
-        (store.store_name, store.location, str(uuid4()))
-    )
+    cursor.execute(cmd1, (store.store_name, store.location, str(uuid4())))
 
     cursor.execute("SELECT * FROM stores")
 
