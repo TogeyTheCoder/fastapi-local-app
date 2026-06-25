@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local FastAPI App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background-color: #131313;
+            color: rgb(212, 212, 212);
+            font-family: sans-serif;
+        }
+
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            height: 800px;
+            width: 600px;
+
+            border: 1px solid gray;
+            border-radius: 30px;
+            background-color: #161616;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <p>{{backend_msg}}</p>
+        </div>
+    </div>
+</body>
+</html>
