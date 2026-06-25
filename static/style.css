@@ -14,6 +14,7 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 50px;
 }
 
 .card{
@@ -27,4 +28,41 @@ body{
     border: 1px solid gray;
     border-radius: 30px;
     background-color: #161616;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.store_name-input{
+    width: 500px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: #161616;
+    color: rgb(247, 247, 247);
+}
+.location-input{
+    width: 500px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: #161616;
+    color: rgb(247, 247, 247);
+}
+
+.submit_button{
+    transition: 0.7s;
+    width: 200px;
+    height: 50px;
+    border-radius: 360px;
+    background-color: #ffd000;
+    font-size: 30px;
+    color: rgb(247, 247, 247);
+    cursor: pointer;
+}
+
+.submit_button:hover{
+    background-color: #ffe884;
+    width: 220px;
+    height: 70px;
+    font-size: 40px;
 }
