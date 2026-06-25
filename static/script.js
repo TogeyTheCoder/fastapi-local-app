@@ -4,6 +4,9 @@ const store_location = document.getElementById("location");
 const store_name = document.getElementById("store_name");
 
 document.getElementById("submit_button").addEventListener("click", async () => {
+
+    const stores = await (await fetch("/stores/")).json();
+
     await fetch("/stores/", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -12,5 +15,6 @@ document.getElementById("submit_button").addEventListener("click", async () => {
             location: store_location.value
         })
     });
-    console.log({"success": true});
+    
+    console.log({"success": true, "stores": stores});
 });
