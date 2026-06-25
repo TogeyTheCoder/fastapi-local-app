@@ -5,7 +5,8 @@ const store_name = document.getElementById("store_name");
 
 document.getElementById("submit_button").addEventListener("click", async () => {
 
-    const stores = await (await fetch("/stores/")).json();
+    const response = await fetch("/stores/fetch_all/");
+    const stores = await response.json();
 
     await fetch("/stores/", {
         method: "POST",

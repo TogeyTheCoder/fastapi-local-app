@@ -15,13 +15,8 @@ class Store(BaseModel):
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
-BASE_DIR = Path(__file__).parent
-
-connection = sqlite3.connect(BASE_DIR / "database" / "stores.db")
-
-cursor = connection.cursor()
-
-cursor.execute(table1)
+APP_DIR = Path(__file__).parent
+ROOT_DIR = Path(APP_DIR).parent
 
 # Access app in http://127.0.0.1:8000
 # Root is still http://0.0.0.0:8000
@@ -35,13 +30,25 @@ async def root(request: Request):
 @app.post("/stores/")
 async def execute_tables(store: Store):
 
+    connection = sqlite3.connect(ROOT_DIR / "database" / "stores.db")
+    cursor = connection.cursor()
+    cursor.execute(table1)
+
     cursor.execute(cmd1, (store.store_name, store.location, str(uuid4())))
+
+    connection.commit()
+    connection.close()
+
+    return {"success":True}
+
+@app.get("/stores/fetch_all/")
+async def fetch_all_stores():
+    connection = sqlite3.connect(ROOT_DIR / "database" / "stores.db")
+    cursor = connection.cursor()
 
     cursor.execute("SELECT * FROM stores")
 
     stores = cursor.fetchall()
 
-    connection.commit()
     connection.close()
-
-    return {"success":True, "stores": stores}
+    return {"success": True, "stores": stores}
