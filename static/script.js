@@ -17,5 +17,5 @@ document.getElementById("submit_button").addEventListener("click", async () => {
         })
     });
     
-    console.log({"success": true, "stores": stores});
+    console.log({"stores": stores});
 });

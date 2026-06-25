@@ -43,6 +43,7 @@ async def execute_tables(store: Store):
 
 @app.get("/stores/fetch_all/")
 async def fetch_all_stores():
+    
     connection = sqlite3.connect(ROOT_DIR / "database" / "stores.db")
     cursor = connection.cursor()
 
